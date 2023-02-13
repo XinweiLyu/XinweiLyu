@@ -1,9 +1,25 @@
-name: Last chess game from lichess.org
-uses: lowlighter/metrics@latest
-with:
-  filename: metrics.plugin.chess.svg
-  token: NOT_NEEDED
-  base: ""
-  plugin_chess: yes
-  plugin_chess_token: ${{ secrets.CHESS_TOKEN }}
-  plugin_chess_platform: lichess.org
+name: Generate Stats Images
+
+on:
+  push:
+    branches: [ master ]
+#   schedule:
+#     - cron: "5 0 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  chess:
+      runs-on: ubuntu-latest
+      steps:
+      - name: Last chess game from lichess.org
+      - uses: lowlighter/metrics@latest
+      - with:
+          filename: metrics.plugin.chess.svg
+          token: NOT_NEEDED
+          base: ""
+          plugin_chess: yes
+          plugin_chess_token: ${{ secrets.CHESS_TOKEN }}
+          plugin_chess_platform: lichess.org
